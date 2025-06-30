@@ -2,8 +2,8 @@
 #include<string.h>
 #include<math.h>
 #include<stdlib.h>
-int *insertArray(int **arr, int *row, int *col) {
-   arr = (int **)malloc(*row * sizeof(int *));
+int **insertArray( int *row, int *col) {
+   int **arr = (int **)malloc(*row * sizeof(int *));
    for (int i = 0; i < *row; i++) {
       arr[i] = (int *)malloc(*col * sizeof(int));
       for (int j = 0; j < *col; j++) {
@@ -22,7 +22,7 @@ int main(){
    scanf("%d", &row);
    printf("Moi nhap so cot: ");
    scanf("%d", &col);
-   arr = insertArray(arr, &row, &col);
+   arr = insertArray(&row, &col);
    int k;
    printf("Moi nhap cot muon sap xep: ");
    scanf("%d", &k);
@@ -46,6 +46,9 @@ int main(){
          printf("%d\t", arr[i][j]);
       }
    }
-   free(arr);
+   for (int i = 0; i < row; i++) {
+   free(arr[i]);  
+}
+free(arr);  
    return 0;
 }
